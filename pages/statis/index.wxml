@@ -1,0 +1,4 @@
+<view class="statis-page">
+  <view class="hero">统计中心</view>
+  <view class="desc">这里将展示线索、带看、转化等核心指标</view>
+</view>

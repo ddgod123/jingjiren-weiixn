@@ -1,0 +1,46 @@
+<view class="login">
+  <view class="login__header">
+    <view class="login__logo">
+      <t-icon name="logo-wechat" size="120rpx" color="#fff" />
+    </view>
+    <view class="login__title">经纪人助手</view>
+    <view class="login__subtitle">专业的房产经纪服务平台</view>
+  </view>
+
+  <view class="login__main">
+    <view class="login__welcome">
+      <text class="welcome-title">欢迎使用</text>
+      <text class="welcome-desc">登录后即可使用完整功能</text>
+    </view>
+
+    <view class="login__actions">
+      <button 
+        class="wechat-login-btn"
+        loading="{{isWechatLoading}}"
+        bindtap="handleWechatLogin"
+      >
+        <t-icon name="logo-wechat" size="48rpx" color="#fff" />
+        <text class="btn-text">微信授权登录</text>
+      </button>
+    </view>
+
+    <view class="login__features">
+      <view class="feature-item">
+        <t-icon name="shield-check" size="40rpx" color="#0052D9" />
+        <text>安全可靠</text>
+      </view>
+      <view class="feature-item">
+        <t-icon name="time" size="40rpx" color="#0052D9" />
+        <text>快速便捷</text>
+      </view>
+      <view class="feature-item">
+        <t-icon name="user-check" size="40rpx" color="#0052D9" />
+        <text>专业服务</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="login__footer">
+    <view class="login__footer-text">安全登录 · 保护隐私</view>
+  </view>
+</view>
