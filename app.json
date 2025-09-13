@@ -1,5 +1,5 @@
 {
-  "pages": ["pages/login/login", "pages/home/index", "pages/message/index", "pages/statis/index", "pages/my/index"],
+  "pages": ["pages/login/login", "pages/home/index", "pages/message/index", "pages/statis/index", "pages/my/index", "pages/broker/apply/index"],
   "usingComponents": {
     "t-toast": "tdesign-miniprogram/toast/toast",
     "t-button": "tdesign-miniprogram/button/button",

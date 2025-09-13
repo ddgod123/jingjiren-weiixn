@@ -14,10 +14,10 @@ Page({
     lastLoginTime: '',
     gridList: [
       {
-        name: '全部发布',
-        icon: 'root-list',
-        type: 'all',
-        url: '',
+        name: '注册楼盘',
+        icon: 'home',
+        type: 'broker_apply',
+        url: '/pages/broker/apply/index',
       },
       {
         name: '审核中',
@@ -276,8 +276,56 @@ Page({
   },
 
   onEleClick(e) {
-    const { name, url } = e.currentTarget.dataset.data;
-    if (url) return;
-    this.onShowToast('#t-toast', name);
+    const { name, url, type } = e.currentTarget.dataset.data;
+    
+    // 检查登录状态
+    if (!this.data.isLoggedIn) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录后再使用此功能',
+        showCancel: false,
+        confirmText: '去登录',
+        success: () => {
+          wx.navigateTo({
+            url: '/pages/login/login'
+          });
+        }
+      });
+      return;
+    }
+    
+    // 处理经纪人申请
+    if (type === 'broker_apply') {
+      this.handleBrokerApply();
+      return;
+    }
+    
+    // 处理有URL的跳转
+    if (url) {
+      wx.navigateTo({
+        url: url
+      });
+      return;
+    }
+    
+    // 其他功能暂时显示提示
+    this.onShowToast('#t-toast', `${name}功能开发中...`);
+  },
+
+  // 处理经纪人申请
+  handleBrokerApply() {
+    wx.showModal({
+      title: '申请成为经纪人',
+      content: '您将申请成为楼盘经纪人，需要填写相关资料并等待审核，是否继续？',
+      confirmText: '继续申请',
+      cancelText: '取消',
+      success: (res) => {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/broker/apply/index'
+          });
+        }
+      }
+    });
   },
 });

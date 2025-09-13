@@ -1,0 +1,138 @@
+.broker-apply {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.apply-content {
+  padding: 0 32rpx 32rpx;
+}
+
+/* 申请说明样式 */
+.apply-notice {
+  margin-bottom: 32rpx;
+}
+
+.notice-title {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.notice-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #0052D9;
+}
+
+.notice-content {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 表单样式 */
+.apply-form {
+  margin-bottom: 64rpx;
+}
+
+.picker-value {
+  color: #333;
+  text-align: right;
+}
+
+.picker-value:empty::before {
+  content: attr(placeholder);
+  color: #ccc;
+}
+
+/* 提交按钮区域 */
+.submit-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32rpx;
+  background-color: #fff;
+  border-top: 2rpx solid #f0f0f0;
+  z-index: 100;
+}
+
+.submit-section .t-button {
+  border-radius: 12rpx;
+}
+
+.submit-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  width: 240rpx !important;
+}
+
+/* 页面底部留白 */
+.apply-content {
+  padding-bottom: 120rpx;
+}
+
+/* 表单组标题样式 */
+.t-cell-group__title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 输入框样式优化 */
+.t-input {
+  text-align: right;
+}
+
+.t-textarea {
+  text-align: left;
+  margin-top: 16rpx;
+}
+
+/* 必填标识 */
+.t-cell[required] .t-cell__title::after {
+  content: '*';
+  color: #e34d59;
+  margin-left: 8rpx;
+}
+
+/* 选择器样式 */
+.t-picker {
+  z-index: 1000;
+}
+
+/* 加载状态 */
+.t-button[loading] {
+  opacity: 0.6;
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  .apply-content {
+    padding: 0 24rpx 24rpx;
+  }
+  
+  .submit-section {
+    padding: 24rpx;
+  }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .broker-apply {
+    background-color: #1a1a1a;
+  }
+  
+  .notice-content {
+    color: #999;
+  }
+  
+  .submit-section {
+    background-color: #2a2a2a;
+    border-top-color: #333;
+  }
+}

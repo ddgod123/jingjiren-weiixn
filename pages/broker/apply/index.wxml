@@ -1,0 +1,118 @@
+<t-toast id="t-toast" />
+
+<view class="broker-apply">
+  <t-navbar title="申请成为经纪人" left-arrow bind:left-click="onBack" />
+  
+  <view class="apply-content">
+    <!-- 申请说明 -->
+    <view class="apply-notice">
+      <t-cell-group theme="card">
+        <t-cell>
+          <view slot="title" class="notice-title">
+            <t-icon name="info-circle" size="32rpx" color="#0052D9" />
+            <text class="notice-text">申请说明</text>
+          </view>
+          <view slot="description" class="notice-content">
+            成为经纪人后，您可以管理楼盘信息、发布房源、处理租赁业务等。我们将在1-3个工作日内完成审核。
+          </view>
+        </t-cell>
+      </t-cell-group>
+    </view>
+
+    <!-- 申请表单 -->
+    <view class="apply-form">
+      <t-cell-group theme="card" title="基本信息">
+        <!-- 真实姓名 -->
+        <t-cell title="真实姓名" required arrow>
+          <t-input
+            slot="note"
+            value="{{formData.realName}}"
+            placeholder="请输入您的真实姓名"
+            data-field="realName"
+            bind:change="onInputChange"
+            clearable
+          />
+        </t-cell>
+        
+        <!-- 手机号码 -->
+        <t-cell title="手机号码" required arrow>
+          <t-input
+            slot="note"
+            value="{{formData.phone}}"
+            placeholder="请输入手机号码"
+            type="number"
+            maxlength="11"
+            data-field="phone"
+            bind:change="onInputChange"
+            clearable
+          />
+        </t-cell>
+        
+      </t-cell-group>
+
+      <t-cell-group theme="card" title="楼盘信息">
+        <!-- 申请楼盘 -->
+        <t-cell title="申请楼盘" required arrow bind:click="showBuildingPicker">
+          <view slot="note" class="picker-value">
+            {{formData.buildingName || '请选择要申请的楼盘'}}
+          </view>
+        </t-cell>
+        
+      </t-cell-group>
+
+      <t-cell-group theme="card" title="专业信息（可选）">
+        <!-- 所属公司 -->
+        <t-cell title="所属公司" arrow>
+          <t-input
+            slot="note"
+            value="{{formData.companyName}}"
+            placeholder="请输入所属公司名称"
+            data-field="companyName"
+            bind:change="onInputChange"
+            clearable
+          />
+        </t-cell>
+        
+        <!-- 从业资格证号 -->
+        <t-cell title="资格证号" arrow>
+          <t-input
+            slot="note"
+            value="{{formData.licenseNo}}"
+            placeholder="请输入从业资格证号"
+            data-field="licenseNo"
+            bind:change="onInputChange"
+            clearable
+          />
+        </t-cell>
+      </t-cell-group>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <view class="submit-buttons">
+        <t-button
+          theme="primary"
+          size="large"
+          loading="{{submitting}}"
+          disabled="{{!canSubmit}}"
+          bind:tap="onSubmit"
+          class="submit-btn"
+        >
+          {{submitting ? '提交中...' : '提交申请'}}
+        </t-button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 楼盘选择器 -->
+<t-picker
+  visible="{{showBuilding}}"
+  value="{{buildingIndex}}"
+  title="选择申请楼盘"
+  bind:change="onBuildingChange"
+  bind:cancel="onBuildingCancel"
+>
+  <t-picker-item options="{{buildingOptions}}" />
+</t-picker>
