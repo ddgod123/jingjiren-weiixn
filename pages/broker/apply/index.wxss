@@ -100,9 +100,127 @@
   margin-left: 8rpx;
 }
 
-/* 选择器样式 */
-.t-picker {
-  z-index: 1000;
+/* 二级选择器样式 */
+.building-selector {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.selector-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #222;
+}
+
+.selector-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* 左侧区域列表 */
+.district-list {
+  width: 240rpx;
+  background: #f8f8f8;
+  overflow-y: auto;
+}
+
+.district-item {
+  padding: 24rpx 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.district-item.active {
+  background: #fff;
+  color: #0052d9;
+}
+
+.district-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+  background: #0052d9;
+}
+
+.district-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.building-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 右侧楼盘列表 */
+.building-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20rpx;
+}
+
+.building-item {
+  padding: 32rpx 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.building-item.selected {
+  background: #f0f7ff;
+}
+
+.building-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.building-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 8rpx;
+}
+
+.building-address {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 底部按钮区域 */
+.selector-footer {
+  padding: 32rpx;
+  border-top: 1rpx solid #e7e7e7;
+  display: flex;
+  gap: 24rpx;
+}
+
+.cancel-btn {
+  flex: 1;
+}
+
+.confirm-btn {
+  flex: 2;
 }
 
 /* 加载状态 */

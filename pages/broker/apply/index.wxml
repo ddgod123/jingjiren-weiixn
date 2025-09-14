@@ -29,6 +29,7 @@
             value="{{formData.realName}}"
             placeholder="请输入您的真实姓名"
             data-field="realName"
+            bind:input="onInputChange"
             bind:change="onInputChange"
             clearable
           />
@@ -43,6 +44,7 @@
             type="number"
             maxlength="11"
             data-field="phone"
+            bind:input="onInputChange"
             bind:change="onInputChange"
             clearable
           />
@@ -68,6 +70,7 @@
             value="{{formData.companyName}}"
             placeholder="请输入所属公司名称"
             data-field="companyName"
+            bind:input="onInputChange"
             bind:change="onInputChange"
             clearable
           />
@@ -80,6 +83,7 @@
             value="{{formData.licenseNo}}"
             placeholder="请输入从业资格证号"
             data-field="licenseNo"
+            bind:input="onInputChange"
             bind:change="onInputChange"
             clearable
           />
@@ -94,7 +98,7 @@
           theme="primary"
           size="large"
           loading="{{submitting}}"
-          disabled="{{!canSubmit}}"
+          disabled="{{!canSubmit || submitting}}"
           bind:tap="onSubmit"
           class="submit-btn"
         >
@@ -106,13 +110,70 @@
 </view>
 
 
-<!-- 楼盘选择器 -->
-<t-picker
-  visible="{{showBuilding}}"
-  value="{{buildingIndex}}"
-  title="选择申请楼盘"
-  bind:change="onBuildingChange"
-  bind:cancel="onBuildingCancel"
+<!-- 楼盘二级选择器 -->
+<t-popup 
+  visible="{{showBuilding}}" 
+  placement="bottom" 
+  bind:visible-change="onBuildingPopupChange"
 >
-  <t-picker-item options="{{buildingOptions}}" />
-</t-picker>
+  <view class="building-selector">
+    <view class="selector-header">
+      <text class="selector-title">选择申请楼盘</text>
+      <t-icon name="close" size="48rpx" bind:tap="closeBuildingSelector" />
+    </view>
+    
+    <view class="selector-content">
+      <!-- 左侧区域列表 -->
+      <view class="district-list">
+        <view 
+          wx:for="{{districtList}}" 
+          wx:key="district"
+          class="district-item {{selectedDistrict === item.district ? 'active' : ''}}"
+          bind:tap="selectDistrict"
+          data-district="{{item.district}}"
+        >
+          <text class="district-name">{{item.district}}</text>
+          <text class="building-count">({{item.count}})</text>
+        </view>
+      </view>
+      
+      <!-- 右侧楼盘列表 -->
+      <view class="building-list">
+        <view 
+          wx:for="{{currentBuildingList}}" 
+          wx:key="id"
+          class="building-item {{selectedBuildingId === item.id ? 'selected' : ''}}"
+          bind:tap="selectBuilding"
+          data-building="{{item}}"
+        >
+          <view class="building-info">
+            <text class="building-name">{{item.name}}</text>
+            <text class="building-address">{{item.address}}</text>
+          </view>
+          <t-icon wx:if="{{selectedBuildingId === item.id}}" name="check" color="#0052d9" size="32rpx" />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 底部确认按钮 -->
+    <view class="selector-footer">
+      <t-button 
+        variant="outline" 
+        size="large" 
+        bind:tap="closeBuildingSelector"
+        class="cancel-btn"
+      >
+        取消
+      </t-button>
+      <t-button 
+        theme="primary" 
+        size="large" 
+        bind:tap="confirmBuildingSelection"
+        class="confirm-btn"
+        disabled="{{!selectedBuildingId}}"
+      >
+        确认选择
+      </t-button>
+    </view>
+  </view>
+</t-popup>

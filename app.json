@@ -78,6 +78,10 @@
       "desc": "用于获取您的微信头像和昵称，完善用户资料"
     }
   },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
   "__usePrivacyCheck__": true,
   "sitemapLocation": "sitemap.json"
 }
